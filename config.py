@@ -11,7 +11,7 @@ class cFtp:
     ftp_username = 'secu-test'
     ftp_password = 'secu-test@test'
 
-    ftp_url = '/多金融产品销售平台/test'
+    ftp_url = '/经纪业务运营平台20/test'
 
 class rar1:
     rar_url = 'F:/testftp/'
