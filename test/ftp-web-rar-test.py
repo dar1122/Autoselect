@@ -1,5 +1,6 @@
 from APP import Web,Ftp,Rar,Move
 from config import web,cFtp,rar1
+import threading
 
 w_username = web.TSusername
 w_password = web.TSpassword
@@ -18,10 +19,24 @@ modification_number = ['M201801050698','M201801050030','M201801041204']
 updata_mumbers = ['his_dbksett_or.sql    V8.0.8.67','user_Secu_TablePatch.sql    V8.0.8.115','libs_as_ftsecusettflow.10.so    V8.0.8.55','c_secusett.dll    V8.0.8.574']
 
 
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
 
     Web.getTS(w_username,w_password)
+
     for num in modification_number:
+
+
+
         requir_list = []
         a = Web.query(num)
         info1=Web.updateinfo()

@@ -6,7 +6,7 @@ import re
 
 
 
-def download(ip,port,username,password,config_url,webget_url):
+def download(ip,port,username,password,config_url,webget_url,go_path):
     ftp = FTP()
     ftp.set_debuglevel(2)
     ftp.connect(ip,port)
@@ -14,7 +14,7 @@ def download(ip,port,username,password,config_url,webget_url):
 
     url = config_url+webget_url
     newurl = url.encode("UTF-8").decode("latin-1")
-    path = "f:/testftp/"
+    path = go_path
 
     ftp.cwd(newurl)
     bufsize = 1024

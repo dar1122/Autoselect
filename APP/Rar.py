@@ -4,7 +4,7 @@ import re
 
 
 
-def rarto(url1,url2,getname):
+def rarto(url1,url2,getname,to_url):
 
     file = rarfile.RarFile(url1+url2)
 
@@ -14,12 +14,12 @@ def rarto(url1,url2,getname):
         for num in getname:
             if num==name :
                 if re.match('.+.so', num) != None:
-                    file.extract(num,'F:/desktest/so')
+                    file.extract(num,to_url+'so')
                 elif re.match('.+.ini', num) != None:
-                    file.extract(num, 'F:/desktest/ini')
+                    file.extract(num, to_url+'ini')
                 elif re.match('.+.dll', num) != None:
-                    file.extract(num, 'F:/desktest/dll')
+                    file.extract(num, to_url+'dll')
                 elif re.match('.+.sql', num) != None:
-                    file.extract(num, 'F:/desktest/sql')
+                    file.extract(num, to_url+'sql')
                 else:
-                    file.extract(num, 'F:/desktest')
+                    file.extract(num, to_url)
