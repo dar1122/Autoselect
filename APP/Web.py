@@ -31,6 +31,8 @@ def getTS(username,password):
 #    driver.find_element_by_id('lovcombo-2574-inputEl').send_keys('auto')
 #    driver.find_element_by_id('lovcombo-2574-inputEl').send_keys(Keys.ENTER)
     time.sleep(5)
+    print('登陆成功')
+
 
 
 def query(modification_number):

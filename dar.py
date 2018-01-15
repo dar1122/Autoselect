@@ -7,8 +7,9 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from APP import Ftp,Rar,Web,Move
+from APP import Ftp,Rar,Web,Move,UI
 from config import cFtp
+import os
 
 
 
@@ -17,7 +18,7 @@ f_password = cFtp.ftp_password
 
 ip = cFtp.ftp_ip
 port = cFtp.ftp_port
-config_url = cFtp.ftp_url
+
 
 
 
@@ -44,6 +45,7 @@ class Ui_Dialog(object):
         self.lineEdit.setObjectName("lineEdit")
         self.lineEdit_2 = QtWidgets.QLineEdit(Dialog)
         self.lineEdit_2.setGeometry(QtCore.QRect(120, 50, 221, 31))
+        self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.lineEdit_3 = QtWidgets.QLineEdit(Dialog)
         self.lineEdit_3.setGeometry(QtCore.QRect(120, 90, 461, 31))
@@ -53,8 +55,14 @@ class Ui_Dialog(object):
         self.lineEdit_4.setObjectName("lineEdit_4")
 
 
+
+        self.pushButton_1 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_1.setGeometry(QtCore.QRect(120, 270, 75, 31))
+        self.pushButton_1.clicked.connect(self.web_login)
+        self.pushButton_1.setObjectName("pushButton_1")
+
         self.pushButton_2 = QtWidgets.QPushButton(Dialog)
-        self.pushButton_2.setGeometry(QtCore.QRect(120, 270, 75, 31))
+        self.pushButton_2.setGeometry(QtCore.QRect(210, 270, 75, 31))
         self.pushButton_2.clicked.connect(self.go_button)
 
         self.pushButton_2.setObjectName("pushButton_2")
@@ -171,8 +179,9 @@ class Ui_Dialog(object):
         self.lineEdit_2.setText(_translate("Dialog", ""))
         self.lineEdit_3.setText(_translate("Dialog", ""))
         self.lineEdit_4.setText(_translate("Dialog", ""))
+        self.pushButton_1.setText(_translate("Dialog", "登录"))
         self.pushButton_2.setText(_translate("Dialog", "挑包"))
-        self.pushButton_3.setText(_translate("Dialog", "再次挑包"))
+        self.pushButton_3.setText(_translate("Dialog", "打印信息"))
         self.label_5.setText(_translate("Dialog", "压缩包输出路径："))
         self.label_6.setText(_translate("Dialog", "升级文件输出路径："))
         self.lineEdit_5.setText(_translate("Dialog", "D:/raroutput/"))
@@ -182,7 +191,7 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(2, _translate("Dialog", "IMS"))
         self.comboBox.setItemText(3, _translate("Dialog", "test"))
         self.comboBox.setItemText(4, _translate("Dialog", "TS工具测试"))
-        self.comboBox.setItemText(5, _translate("Dialog", "UCF浏览器\n"
+        self.comboBox.setItemText(5, _translate("Dialog", "UCF浏览器"
 ""))
         self.comboBox.setItemText(6, _translate("Dialog", "UFT4us-CFFEX"))
         self.comboBox.setItemText(7, _translate("Dialog", "�ڻ�UFT2.0"))
@@ -193,14 +202,14 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(12, _translate("Dialog", "信用头寸多活"))
         self.comboBox.setItemText(13, _translate("Dialog", "内存风控平台"))
         self.comboBox.setItemText(14, _translate("Dialog", "刷卡"))
-        self.comboBox.setItemText(15, _translate("Dialog", "多金融产品销售平台\n"
+        self.comboBox.setItemText(15, _translate("Dialog", "多金融产品销售平台"
 ""))
-        self.comboBox.setItemText(16, _translate("Dialog", "广发版技术支持测试\n"
+        self.comboBox.setItemText(16, _translate("Dialog", "广发版技术支持测试"
 ""))
         self.comboBox.setItemText(17, _translate("Dialog", "投行发行系统"))
         self.comboBox.setItemText(18, _translate("Dialog", "撮合交易系统V2.0"))
         self.comboBox.setItemText(19, _translate("Dialog", "新版OTC"))
-        self.comboBox.setItemText(20, _translate("Dialog", "新版OTC开发阶段递交包\n"
+        self.comboBox.setItemText(20, _translate("Dialog", "新版OTC开发阶段递交包"
 ""))
         self.comboBox.setItemText(21, _translate("Dialog", "期现UFC2.0"))
         self.comboBox.setItemText(22, _translate("Dialog", "期货2006"))
@@ -216,7 +225,7 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(32, _translate("Dialog", "档案管理平台"))
         self.comboBox.setItemText(33, _translate("Dialog", "法人清算系统"))
         self.comboBox.setItemText(34, _translate("Dialog", "消费支付2.0"))
-        self.comboBox.setItemText(35, _translate("Dialog", "热自助\n"
+        self.comboBox.setItemText(35, _translate("Dialog", "热自助"
 ""))
         self.comboBox.setItemText(36, _translate("Dialog", "独立用户系统V3.0"))
         self.comboBox.setItemText(37, _translate("Dialog", "第3方基金代销测试"))
@@ -225,7 +234,7 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(40, _translate("Dialog", "统一接入"))
         self.comboBox.setItemText(41, _translate("Dialog", "统一认证"))
         self.comboBox.setItemText(42, _translate("Dialog", "统一认证系统软件V2.0"))
-        self.comboBox.setItemText(43, _translate("Dialog", "统一适当性管理平台\n"
+        self.comboBox.setItemText(43, _translate("Dialog", "统一适当性管理平台"
 ""))
         self.comboBox.setItemText(44, _translate("Dialog", "综合理财IWM2.0"))
         self.comboBox.setItemText(45, _translate("Dialog", "综合理财标准版V21"))
@@ -233,27 +242,27 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(47, _translate("Dialog", "股票期权"))
         self.comboBox.setItemText(48, _translate("Dialog", "股票期权UFK2.0"))
         self.comboBox.setItemText(49, _translate("Dialog", "股票期权多活UFT"))
-        self.comboBox.setItemText(50, _translate("Dialog", "融资融券06版\n"
+        self.comboBox.setItemText(50, _translate("Dialog", "融资融券06版"
 ""))
         self.comboBox.setItemText(51, _translate("Dialog", "融资融券2.0"))
         self.comboBox.setItemText(52, _translate("Dialog", "融资融券多活UFT"))
         self.comboBox.setItemText(53, _translate("Dialog", "证券极速交易UFT"))
-        self.comboBox.setItemText(54, _translate("Dialog", "融资融券06版\n"
+        self.comboBox.setItemText(54, _translate("Dialog", "融资融券06版"
 ""))
         self.comboBox.setItemText(55, _translate("Dialog", "融资融券2.0"))
         self.comboBox.setItemText(56, _translate("Dialog", "融资融券多活UFT"))
-        self.comboBox.setItemText(57, _translate("Dialog", "证券06版\n"
+        self.comboBox.setItemText(57, _translate("Dialog", "证券06版"
 ""))
         self.comboBox.setItemText(58, _translate("Dialog", "证券多活UFT"))
         self.comboBox.setItemText(59, _translate("Dialog", "证券极速交易UFT"))
         self.comboBox.setItemText(60, _translate("Dialog", "账户分析"))
         self.comboBox.setItemText(61, _translate("Dialog", "账户管理2.0"))
         self.comboBox.setItemText(62, _translate("Dialog", "资产存管系统"))
-        self.comboBox.setItemText(63, _translate("Dialog", "转融通\n"
+        self.comboBox.setItemText(63, _translate("Dialog", "转融通"
 ""))
         self.comboBox.setItemText(64, _translate("Dialog", "运维监控"))
         self.comboBox.setItemText(65, _translate("Dialog", "量化投研和交易平台软件1.0"))
-        self.comboBox.setItemText(66, _translate("Dialog", "金融基础件\n"
+        self.comboBox.setItemText(66, _translate("Dialog", "金融基础件"
 ""))
         self.comboBox.setItemText(67, _translate("Dialog", "银企直连"))
         self.comboBox.setItemText(68, _translate("Dialog", "银证平台"))
@@ -261,24 +270,47 @@ class Ui_Dialog(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">5</p></body></html>"))
-        self.label_7.setText(_translate("Dialog", "打印信息"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">本工具开发源码：https://github.com/dar1122/Autoselect<br>若该工具为您工作带来便利，请帮忙star<br>如有疑问，请发邮件致2744544336@qq.com<br>禁止一切商业用途</p></body></html>"))
+        self.label_7.setText(_translate("Dialog", "备注："))
         self.label_8.setText(_translate("Dialog", "选择压缩包所在目录"))
+
+    def web_login(self):
+        username = self.lineEdit.text()
+        password = self.lineEdit_2.text()
+        Web.getTS(username,password)
+
+
+
+
+
+
 
 
     def go_button(self):
-        username = self.lineEdit.text()
-        password = self.lineEdit_2.text()
 
         x = self.lineEdit_3.text()
         modification_numbers = x.split(',')
         x1 = self.lineEdit_4.text()
         updata_mumbers = x1.split(',')
-
         url1 = self.lineEdit_5.text()
         to_path = self.lineEdit_6.text()
+        now_comboBox_vaule = self.comboBox.currentText()
 
-        Web.getTS(username,password)
+        config_url = '/{}/test'.format(now_comboBox_vaule)
+
+
+
+
+
+        ifexit = os.path.isdir(url1)
+        ifexit1 = os.path.isdir(to_path)
+        if ifexit == False:
+            os.mkdir(url1)
+        if ifexit1 == False:
+            os.mkdir(to_path)
+
+
+
         for num in modification_numbers:
             requir_list = []
             a = Web.query(num)
@@ -299,35 +331,21 @@ class Ui_Dialog(object):
 
             url2 = Ftp.download(ip, port, f_username, f_password, config_url, webget_url,url1)
             Rar.rarto(url1, url2, to_updata_list,to_path)
+
+
 
 
     def re_button(self):
 
-        x = self.lineEdit_3.text()
-        modification_numbers = x.split(',')
+
+
+
         x1 = self.lineEdit_4.text()
         updata_mumbers = x1.split(',')
 
-        url1 = self.lineEdit_5.text()
+
         to_path = self.lineEdit_6.text()
 
-        for num in modification_numbers:
-            requir_list = []
-            a = Web.query(num)
-            info1 = Web.updateinfo()
-            Web.mod_del()
+        UI.updata_info(updata_mumbers,to_path)
 
-            name_list = Move.sp_tan(info1)
-            for member in name_list:
-                for updata_member in updata_mumbers:
-                    if member == updata_member:
-                        new_member = member.split()
-                        del new_member[1]
-                        requir_list.extend(new_member)
 
-            to_updata_list = requir_list
-
-            webget_url = a
-
-            url2 = Ftp.download(ip, port, f_username, f_password, config_url, webget_url,url1)
-            Rar.rarto(url1, url2, to_updata_list,to_path)

@@ -1,17 +1,17 @@
 from APP import Web
-from config import web
+import selenium
 
-username = web.TSusername
-password = web.TSpassword
+username = '1111'
+password = ''
 
 
 modification_number = ['M201801041204','M201801050698','M201801050030']
 
 if __name__ == '__main__':
-    Web.getTS(username,password)
-    for num in modification_number:
-        a=Web.query(num)
-        print(a)
-        Web.updateinfo()
-        Web.mod_del()
+
+    try:
+        Web.getTS(username,password)
+    except selenium.common.exceptions.NoSuchElementException:
+        print(111111)
+
 

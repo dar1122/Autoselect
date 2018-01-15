@@ -1,5 +1,5 @@
 from APP import Web,Ftp,Rar,Move
-from config import web,cFtp,rar1
+from config import cFtp
 import threading
 
 w_username = web.TSusername
@@ -14,9 +14,9 @@ config_url = cFtp.ftp_url
 
 url1 = rar1.rar_url
 
-modification_number = ['M201801050698','M201801050030','M201801041204']
+modification_number = ['M201801050698,M201801050030,M201801041204']
 
-updata_mumbers = ['his_dbksett_or.sql    V8.0.8.67','user_Secu_TablePatch.sql    V8.0.8.115','libs_as_ftsecusettflow.10.so    V8.0.8.55','c_secusett.dll    V8.0.8.574']
+updata_mumbers = ['his_dbksett_or.sql    V8.0.8.67,user_Secu_TablePatch.sql    V8.0.8.115,libs_as_ftsecusettflow.10.so    V8.0.8.55,c_secusett.dll    V8.0.8.574']
 
 
 

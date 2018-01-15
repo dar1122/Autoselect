@@ -1,9 +1,11 @@
-modification_number = ['M201801080280','M201801080278','M201801040714']
+a = 51
+b = '2'
 
-a = 'M201801080280'
 
-for num in modification_number:
-    if num == a:
+try:
+    if a<b:
         print(1)
     else:
-        print(0)
+        print(3)
+except TypeError:
+    print('请输入数字')

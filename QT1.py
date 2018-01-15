@@ -1,9 +1,10 @@
 # coding = utf-8
 import sys
-from PyQt5.QtWidgets import QApplication,QWidget,QPushButton,QMessageBox,QLineEdit,QDialog,QLabel,QHBoxLayout,QVBoxLayout,QInputDialog
-from PyQt5.QtGui import QIcon,QKeyEvent,QKeySequence,QRegExpValidator
-from PyQt5.QtCore import QCoreApplication,Qt,QEvent,QRegExp
+from PyQt5.QtWidgets import QApplication,QWidget,QPushButton, QLineEdit, QHBoxLayout,QVBoxLayout
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import QCoreApplication,QRect
 import listtest
+
 
 class Ico(QWidget):
 
@@ -15,15 +16,29 @@ class Ico(QWidget):
 
     def initUI(self):
 
+        _translate = QCoreApplication.translate
+
+
+        self.comboBox.setGeometry(QRect(370, 30, 211, 31))
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.setItemText(0, _translate("Dialog", "HSOBM"))
+        self.comboBox.setItemText(1, _translate("Dialog", "IFSManaPlat"))
+        self.comboBox.setItemText(2, _translate("Dialog", "IMS"))
+
         self.setGeometry(600,600,600,440)
         self.setWindowTitle('自动化挑包工具')
         self.setWindowIcon(QIcon('1.jpg'))
+
+
 
         qbtn = QPushButton('退出',self)
         qbtn.clicked.connect(QCoreApplication.instance().quit)
 
         start_button = QPushButton('开始',self)
-        start_button.clicked.connect(listtest.gogogo)
+        start_button.clicked.connect()
 
         hbox = QHBoxLayout()
         hbox.addStretch(1)
@@ -45,15 +60,11 @@ class Ico(QWidget):
 
 
 
-        self.text1 = QLineEdit(self)
-        self.text1.setGeometry(250,60,150,50)
-
-
-
-
 
 
         self.show()
+
+
 
 
 

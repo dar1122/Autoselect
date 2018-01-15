@@ -1,17 +1,17 @@
 from APP import Web,Ftp
-from config import web,cFtp
+from config import cFtp
 
-w_username = web.TSusername
-w_password = web.TSpassword
+w_username = 'diaoar23310'
+w_password = 'dar!960207'
 
 f_username = cFtp.ftp_username
 f_password = cFtp.ftp_password
 
 ip = cFtp.ftp_ip
 port = cFtp.ftp_port
-config_url = cFtp.ftp_url
+config_url = '1111'
 
-url1 = r
+
 
 
 modification_number = 'M201712210622'
