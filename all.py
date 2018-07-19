@@ -19,10 +19,10 @@ import ftplib
 
 
 class cFtp:
-    ftp_ip = '192.168.102.180'
-    ftp_port = 5212
-    ftp_username = 'secu-test'
-    ftp_password = 'secu-test@test'
+    ftp_ip = ''
+    ftp_port = 
+    ftp_username = ''
+    ftp_password = ''
 
 
 
@@ -147,7 +147,7 @@ def updata_info(updata_mumbers,get_path):
 def getTS(username,password):
     global driver
     driver = webdriver.PhantomJS("E:/phantomjs-2.1.1-windows/phantomjs-2.1.1-windows/bin/phantomjs.exe")
-    driver.get("https://ts.hundsun.com/")
+    driver.get("")
     #输入用户名和密码
     time.sleep(3)
     driver.find_element_by_id('username').send_keys(username)
